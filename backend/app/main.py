@@ -1,15 +1,14 @@
 from fastapi import FastAPI
 
 from .database import Base, engine
-
-# Import routers here as we implement them
-# from .routers import leads
+from .routers import leads, properties
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Real Estate Systems API")
 
-# app.include_router(leads.router, prefix="/leads", tags=["leads"])
+app.include_router(leads.router, prefix="/leads", tags=["leads"])
+app.include_router(properties.router, prefix="/properties", tags=["properties"])
 
 
 @app.get("/health")
