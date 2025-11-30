@@ -83,3 +83,25 @@ class PropertyInquiryOut(BaseModel):
 
     class Config:
         orm_mode = True
+class WhatsAppTemplateCreate(BaseModel):
+    name: str
+    body: str
+
+
+class WhatsAppTemplateOut(BaseModel):
+    id: int
+    name: str
+    body: str
+
+    class Config:
+        orm_mode = True
+
+
+class WhatsAppMessageOut(BaseModel):
+    id: int
+    lead_id: int
+    body: str
+    status: str
+
+    class Config:
+        orm_mode = True

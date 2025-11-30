@@ -61,3 +61,22 @@ class PropertyInquiry(Base):
 
     lead = relationship("Lead")
     property = relationship("Property", back_populates="inquiries")
+
+class WhatsAppTemplate(Base):
+    __tablename__ = "whatsapp_templates"
+
+    id = Column(Integer, primary_key=True, index=True)
+    name = Column(String, unique=True, nullable=False)
+    body = Column(String, nullable=False)  # Example: "Hi {name}, about {property}..."
+
+
+class WhatsAppMessage(Base):
+    __tablename__ = "whatsapp_messages"
+
+    id = Column(Integer, primary_key=True, index=True)
+    lead_id = Column(Integer, ForeignKey("leads.id"), nullable=False)
+    body = Column(String, nullable=False)
+    status = Column(String, default="PENDING")  # PENDING, READY, SENT
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    lead = relationship("Lead")
