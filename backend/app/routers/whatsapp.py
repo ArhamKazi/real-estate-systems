@@ -33,3 +33,11 @@ def list_templates(db: Session = Depends(get_db)):
 @router.get("/messages", response_model=List[schemas.WhatsAppMessageOut])
 def list_messages(db: Session = Depends(get_db)):
     return db.query(models.WhatsAppMessage).all()
+
+from ..services.whatsapp_flow import generate_followups
+
+
+@router.post("/generate", response_model=list[schemas.WhatsAppMessageOut])
+def trigger_generation(db: Session = Depends(get_db)):
+    messages = generate_followups(db)
+    return messages
