@@ -1,9 +1,18 @@
-# Real Estate Systems
+# Real Estate Lead Engine  
+**Full-stack CRM + Property Inquiry System with WhatsApp Automation**
 
-Backend + (future) frontend for real estate lead capture, CRM pipeline, WhatsApp workflow simulation, 
-inquiry tracking, and basic reporting.
+A complete real-estate operations system built with **FastAPI + React**, designed to manage:
 
-## Structure
+- Lead capture  
+- CRM pipeline stages  
+- Property listings  
+- Buyer → property inquiries  
+- Automated WhatsApp follow-ups  
+- Light analytics dashboards  
 
-- `backend/` — FastAPI + SQLAlchemy application
-- `frontend/` — placeholder for web UI (to be implemented)
+## Quick start
+
+### Backend
+```bash
+cd backend
+uvicorn app.main:app --reload

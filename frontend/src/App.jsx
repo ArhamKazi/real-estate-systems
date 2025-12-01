@@ -1,36 +1,23 @@
-import { useState } from "react";
-import LeadForm from "./LeadForm";
-import LeadList from "./LeadList";
-import PropertyForm from "./PropertyForm";
-import PropertyList from "./PropertyList";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./NavBar";
+import LeadsPage from "./pages/LeadsPage";
+import PropertiesPage from "./pages/PropertiesPage";
+import DashboardPage from "./pages/DashboardPage";
+import WhatsAppPage from "./pages/WhatsAppPage";
 
-function App() {
-  const [reloadKey, setReloadKey] = useState(0);
-  const [propertyReloadKey, setPropertyReloadKey] = useState(0);
-
-  function handleLeadCreated() {
-    setReloadKey((k) => k + 1);
-  }
-
-  function handlePropertyCreated() {
-    setPropertyReloadKey((k) => k + 1);
-  }
-
+export default function App() {
   return (
-    <div style={{ padding: "2rem", fontFamily: "system-ui, sans-serif" }}>
-      <h1>Real Estate Lead & Inquiry System</h1>
-
-      <div style={{ display: "flex", gap: "2rem", alignItems: "flex-start", flexWrap: "wrap" }}>
-        <LeadForm onCreated={handleLeadCreated} />
-        <LeadList reloadTrigger={reloadKey} />
+    <BrowserRouter>
+      <div style={{ padding: "2rem", fontFamily: "system-ui, sans-serif" }}>
+        <h1>Real Estate Lead & Inquiry System</h1>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<LeadsPage />} />
+          <Route path="/properties" element={<PropertiesPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/whatsapp" element={<WhatsAppPage />} />
+        </Routes>
       </div>
-
-      <div style={{ display: "flex", gap: "2rem", alignItems: "flex-start", flexWrap: "wrap", marginTop: "2rem" }}>
-        <PropertyForm onCreated={handlePropertyCreated} />
-        <PropertyList key={propertyReloadKey} />
-      </div>
-    </div>
+    </BrowserRouter>
   );
 }
-
-export default App;

@@ -42,3 +42,20 @@ export async function fetchInquiries() {
   const res = await axios.get(`${API_BASE}/properties/inquiries`);
   return res.data;
 }
+
+// ... existing imports and functions ...
+
+export async function fetchLeadsByArea() {
+  const res = await axios.get(`${API_BASE}/reporting/leads-by-area`);
+  return res.data;
+}
+
+export async function fetchLeadsByStatus() {
+  const res = await axios.get(`${API_BASE}/reporting/leads-by-status`);
+  return res.data;
+}
+
+export async function fetchPropertiesByLocation() {
+  const res = await axios.get(`${API_BASE}/reporting/properties-by-location`);
+  return res.data;
+}
