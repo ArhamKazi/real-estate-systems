@@ -1,11 +1,14 @@
 import axios from "axios";
 
-const API_BASE = "http://127.0.0.1:8000";
+// Use Vite env var (set in Vercel) or default to local backend.
+const API_BASE = import.meta.env.VITE_API_BASE || "http://127.0.0.1:8000";
 
 export async function fetchLeads() {
   const res = await axios.get(`${API_BASE}/leads/`);
   return res.data;
 }
+
+// ... rest unchanged ...
 
 export async function createLead(payload) {
   const res = await axios.post(`${API_BASE}/leads/`, payload);
