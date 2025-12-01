@@ -8,6 +8,22 @@ from .routers import whatsapp
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Real Estate Systems API")
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "http://localhost:5173",
+    "https://your-vercel-deployment-domain.vercel.app",
+    "https://real-estate-systems.onrender.com",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],            # use ["*"] for quick testing, restrict for production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 app.include_router(leads.router, prefix="/leads", tags=["leads"])
 app.include_router(properties.router, prefix="/properties", tags=["properties"])
